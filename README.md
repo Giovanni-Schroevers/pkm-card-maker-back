@@ -19,6 +19,11 @@ A virtual environment will be used to install dependencies.
   - Run `$ python manage.py migrate`
 - Run the server
   - Run `$ python manage.py runserver`
+  
+- Set up an OAuth2.0 Application:
+    - Go to http://localhost:8000/admin/ and log in with your created user
+    - Follow [this](https://django-oauth-toolkit.readthedocs.io/en/latest/rest-framework/getting_started.html#step-3-register-an-application) tutorial
+- Access http://localhost:8000/api/ (instead of `/users` specified in the tutorial)
 
 ### Troubleshooting
 

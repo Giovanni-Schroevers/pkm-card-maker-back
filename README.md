@@ -20,10 +20,15 @@ A virtual environment will be used to install dependencies.
 - Run the server
   - Run `$ python manage.py runserver`
   
-- Set up an OAuth2.0 Application:
-    - Go to http://localhost:8000/admin/ and log in with your created user
-    - Follow [this](https://django-oauth-toolkit.readthedocs.io/en/latest/rest-framework/getting_started.html#step-3-register-an-application) tutorial
-- Access http://localhost:8000/api/ (instead of `/users` specified in the tutorial)
+### Set up an OAuth2.0 Application
+Go to Django admin and add a new Application with the following configuration:
+
+- client_id and client_secret should be left unchanged
+- user should be your superuser
+- redirect_uris should be left blank
+- client_type should be set to confidential
+- authorization_grant_type should be set to 'Resource owner password-based'
+- name can be set to whatever you'd like
 
 ### Troubleshooting
 

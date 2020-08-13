@@ -1,4 +1,4 @@
-# Pokemon card maker Back-end
+# Pokemon Card Maker Back-end
 
 As per conventions, commands to run in the terminal are prefixed with `$`. This symbol should not be typed.
 

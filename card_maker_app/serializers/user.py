@@ -32,3 +32,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'photo',
             'password'
         )
+
+
+class EmailSerializer(serializers.Serializer):
+    email = serializers.CharField(max_length=255)
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=255)
+    password = serializers.CharField(max_length=255)

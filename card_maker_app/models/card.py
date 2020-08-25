@@ -1,6 +1,6 @@
 from django.db import models
 
-from card_maker_app.models import Supertype, Type, Subtype, Rarity, Rotation, RarityIcon
+from card_maker_app.models import Supertype, Type, Subtype, Rarity, Rotation, RarityIcon, Set, BaseSet
 
 
 class Card(models.Model):
@@ -27,4 +27,6 @@ class Card(models.Model):
     rarity = models.ForeignKey(Rarity, on_delete=models.PROTECT, null=True, blank=True)
     rotation = models.ForeignKey(Rotation, on_delete=models.PROTECT)
     rarity_icon = models.ForeignKey(RarityIcon, on_delete=models.PROTECT)
-
+    set = models.ForeignKey(Set, on_delete=models.PROTECT, null=True, blank=True)
+    base_set = models.ForeignKey(BaseSet, on_delete=models.PROTECT)
+    move_1 = models.ForeignKey

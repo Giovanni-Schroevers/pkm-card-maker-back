@@ -2,7 +2,6 @@ from .user import User
 from .password_reset_token import PasswordResetToken
 from .base_set import BaseSet
 from .set import Set
-from .move import Move
 from .variation import Variation
 from .rarity import Rarity
 from .subtype import Subtype
@@ -11,5 +10,6 @@ from .supertype import Supertype
 from .rotation import Rotation
 from .rarity_icon import RarityIcon
 from .move_energy_cost import MoveEnergyCost
+from .move import Move
 from .card import Card
 from .ability import Ability

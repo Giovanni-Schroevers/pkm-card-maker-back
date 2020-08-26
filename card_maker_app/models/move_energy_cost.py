@@ -1,6 +1,7 @@
 from django.db import models
 
-from card_maker_app.models import Move, Type
+from card_maker_app.models import Type
+from card_maker_app.models.move import Move
 
 
 class MoveEnergyCost(models.Model):
@@ -9,4 +10,7 @@ class MoveEnergyCost(models.Model):
     amount = models.IntegerField()
 
     class Meta:
-        db_table = Move._meta.app_label + "move_energy_cost"
+        db_table = Move._meta.app_label + "_move_energy_cost"
+
+    def __str__(self):
+        return self.move

@@ -1,0 +1,444 @@
+[
+  {
+    "model": "card_maker_app.variation",
+    "pk": 1,
+    "fields": {
+      "short_name": "Dynamax",
+      "name": "Dynamax"
+    }
+  },
+  {
+    "model": "card_maker_app.variation",
+    "pk": 2,
+    "fields": {
+      "short_name": "Gigantamax",
+      "name": "Gigantamax"
+    }
+  },
+  {
+    "model": "card_maker_app.rarity",
+    "pk": 1,
+    "fields": {
+      "short_name": "Promo",
+      "name": "Promo",
+      "has_name_outline": false,
+      "has_black_top_text": false
+    }
+  },
+  {
+    "model": "card_maker_app.rarity",
+    "pk": 2,
+    "fields": {
+      "short_name": "FA",
+      "name": "Full Art",
+      "has_name_outline": true,
+      "has_black_top_text": false
+    }
+  },
+  {
+    "model": "card_maker_app.rarity",
+    "pk": 3,
+    "fields": {
+      "short_name": "Gold_FA",
+      "name": "Golden Full Art",
+      "has_name_outline": true,
+      "has_black_top_text": true
+    }
+  },
+  {
+    "model": "card_maker_app.rarity",
+    "pk": 4,
+    "fields": {
+      "short_name": "Rainbow",
+      "name": "Rainbow",
+      "has_name_outline": false,
+      "has_black_top_text": false
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 1,
+    "fields": {
+      "short_name": "Basic",
+      "name": "Basic",
+      "has_prevolve": false,
+      "has_pokedex_entry": true,
+      "has_description": true,
+      "has_white_top_text": false,
+      "has_v_style": false,
+      "has_v_symbol": false,
+      "has_name_outline": false,
+      "has_vmax_symbol": false,
+      "rarities": [1]
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 2,
+    "fields": {
+      "short_name": "Stage1",
+      "name": "Stage 1",
+      "has_prevolve": true,
+      "has_pokedex_entry": true,
+      "has_description": true,
+      "has_white_top_text": false,
+      "has_v_style": false,
+      "has_v_symbol": false,
+      "has_name_outline": false,
+      "has_vmax_symbol": false
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 3,
+    "fields": {
+      "short_name": "Stage2",
+      "name": "Stage 2",
+      "has_prevolve": true,
+      "has_pokedex_entry": true,
+      "has_description": true,
+      "has_white_top_text": false,
+      "has_v_style": false,
+      "has_v_symbol": false,
+      "has_name_outline": false,
+      "has_vmax_symbol": false
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 4,
+    "fields": {
+      "short_name": "V",
+      "name": "V",
+      "has_prevolve": false,
+      "has_pokedex_entry": false,
+      "has_description": false,
+      "has_white_top_text": true,
+      "has_v_style": true,
+      "has_v_symbol": true,
+      "has_name_outline": false,
+      "has_vmax_symbol": false,
+      "rarities": [2, 3]
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 5,
+    "fields": {
+      "short_name": "VMax",
+      "name": "VMax",
+      "has_prevolve": true,
+      "has_pokedex_entry": false,
+      "has_description": false,
+      "has_white_top_text": true,
+      "has_v_style": true,
+      "has_v_symbol": false,
+      "has_name_outline": true,
+      "has_vmax_symbol": true,
+      "variations": [1, 2]
+    }
+  },
+  {
+    "model": "card_maker_app.subtype",
+    "pk": 6,
+    "fields": {
+      "short_name": "Tool",
+      "name": "Tool",
+      "has_prevolve": false,
+      "has_pokedex_entry": false,
+      "has_description": false,
+      "has_white_top_text": false,
+      "has_v_style": false,
+      "has_v_symbol": false,
+      "has_name_outline": false,
+      "has_vmax_symbol": false
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 1,
+    "fields": {
+      "short_name": "Grass",
+      "name": "Grass",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 2,
+    "fields": {
+      "short_name": "Fire",
+      "name": "Fire",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 3,
+    "fields": {
+      "short_name": "Water",
+      "name": "Water",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 4,
+    "fields": {
+      "short_name": "Lightning",
+      "name": "Lightning",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 5,
+    "fields": {
+      "short_name": "Psychic",
+      "name": "Psychic",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 6,
+    "fields": {
+      "short_name": "Fighting",
+      "name": "Fighting",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 7,
+    "fields": {
+      "short_name": "Dark",
+      "name": "Dark",
+      "subtype_required": true,
+      "has_white_text": true,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 8,
+    "fields": {
+      "short_name": "Metal",
+      "name": "Metal",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 9,
+    "fields": {
+      "short_name": "Colorless",
+      "name": "Colorless",
+      "subtype_required": true,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": true,
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 10,
+    "fields": {
+      "short_name": "Item",
+      "name": "Item",
+      "subtype_required": false,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": false,
+      "subtypes": [6]
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 11,
+    "fields": {
+      "short_name": "Supporter",
+      "name": "Supporter",
+      "subtype_required": false,
+      "has_white_text": false,
+      "has_sub_name": true,
+      "has_special_style": false,
+      "is_energy": false
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 12,
+    "fields": {
+      "short_name": "Base",
+      "name": "Base",
+      "subtype_required": false,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": false,
+      "is_energy": false
+    }
+  },
+  {
+    "model": "card_maker_app.type",
+    "pk": 13,
+    "fields": {
+      "short_name": "Special",
+      "name": "Special",
+      "subtype_required": false,
+      "has_white_text": false,
+      "has_sub_name": false,
+      "has_special_style": true,
+      "is_energy": false
+    }
+  },
+  {
+    "model": "card_maker_app.supertype",
+    "pk": 1,
+    "fields": {
+      "short_name": "Pokemon",
+      "name": "Pokémon",
+      "types": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "subtypes": [1, 2, 3, 4, 5]
+    }
+  },
+  {
+    "model": "card_maker_app.supertype",
+    "pk": 2,
+    "fields": {
+      "short_name": "Trainer",
+      "name": "Trainer",
+      "types": [10, 11],
+      "subtypes": [6]
+    }
+  },
+  {
+    "model": "card_maker_app.supertype",
+    "pk": 3,
+    "fields": {
+      "short_name": "Energy",
+      "name": "Energy",
+      "types": [12, 13]
+    }
+  },
+  {
+    "model": "card_maker_app.supertype",
+    "pk": 4,
+    "fields": {
+      "short_name": "RaidBoss",
+      "name": "Raid Boss",
+      "types": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      "subtypes": [5]
+    }
+  },
+  {
+    "model": "card_maker_app.baseset",
+    "pk": 1,
+    "fields": {
+      "short_name": "SS",
+      "name": "Sword & Shield"
+    }
+  },
+  {
+    "model": "card_maker_app.set",
+    "pk": 1,
+    "fields": {
+      "short_name": "Sword_And_Shield",
+      "name": "Base",
+      "number": 87,
+      "base_set_id": 1
+    }
+  },
+  {
+    "model": "card_maker_app.set",
+    "pk": 2,
+    "fields": {
+      "short_name": "Rebel_Clash",
+      "name": "Rebel Clash",
+      "number": 88,
+      "base_set_id": 1
+    }
+  },
+  {
+    "model": "card_maker_app.set",
+    "pk": 3,
+    "fields": {
+      "short_name": "Promo",
+      "name": "Promo",
+      "number": 0
+    }
+  },
+  {
+    "model": "card_maker_app.rotation",
+    "pk": 1,
+    "fields": {
+      "short_name": "D",
+      "name": "D"
+    }
+  },
+  {
+    "model": "card_maker_app.rarityicon",
+    "pk": 1,
+    "fields": {
+      "short_name": "common",
+      "name": "Common"
+    }
+  },
+  {
+    "model": "card_maker_app.rarityicon",
+    "pk": 2,
+    "fields": {
+      "short_name": "uncommon",
+      "name": "Uncommon"
+    }
+  },
+  {
+    "model": "card_maker_app.rarityicon",
+    "pk": 3,
+    "fields": {
+      "short_name": "rare",
+      "name": "Rare"
+    }
+  }
+]

@@ -13,5 +13,5 @@ class Subtype(NamedModel):
     has_v_symbol = models.BooleanField()
     has_name_outline = models.BooleanField()
     has_vmax_symbol = models.BooleanField()
-    rarities = models.ManyToManyField(Rarity)
-    variations = models.ManyToManyField(Variation)
+    rarities = models.ManyToManyField(Rarity, related_name='subtypes')
+    variations = models.ManyToManyField(Variation, related_name='subtypes')

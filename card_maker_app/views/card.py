@@ -1,10 +1,12 @@
+from rest_framework import viewsets
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from card_maker_app.models import Supertype, Subtype, Type, BaseSet, Set, Rarity, Variation, Rotation, RarityIcon
+from card_maker_app.models import Supertype, Subtype, Type, BaseSet, Set, Rarity, Variation, Rotation, RarityIcon, Card
+from card_maker_app.permissions.admin import IsAdminOrGetRequest
 from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, TypeSerializer, BaseSetSerializer, \
-    SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer
+    SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer
 
 
 @api_view(('GET',))
@@ -32,3 +34,9 @@ def get_card_options(request):
         'rotations': rotations,
         'rarity_icons': rarity_icons
     })
+
+
+@permission_classes((IsAdminOrGetRequest,))
+class CardViewSet(viewsets.ModelViewSet):
+    queryset = Card.objects.all()
+    serializer_class = CardSerializer

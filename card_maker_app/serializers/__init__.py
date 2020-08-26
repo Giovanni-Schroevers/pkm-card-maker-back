@@ -8,3 +8,6 @@ from .variations import VariationSerializer
 from .rarity import RaritySerializer
 from .rotation import RotationSerializer
 from .rarity_icon import RarityIconSerializer
+from .move_energy_cost import MoveEnergyCostSerializer
+from .move import MoveSerializer
+from .card import CardSerializer

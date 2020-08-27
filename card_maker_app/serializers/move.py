@@ -16,3 +16,15 @@ class MoveSerializer(serializers.ModelSerializer):
             'text',
             'move_energy_cost',
         )
+
+
+class MoveCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Move
+        fields = (
+            'id',
+            'name',
+            'damage',
+            'text',
+        )

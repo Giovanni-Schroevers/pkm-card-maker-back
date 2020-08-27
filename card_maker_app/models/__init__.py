@@ -11,5 +11,5 @@ from .rotation import Rotation
 from .rarity_icon import RarityIcon
 from .move_energy_cost import MoveEnergyCost
 from .move import Move
-from .card import Card
 from .ability import Ability
+from .card import Card

@@ -3,6 +3,10 @@ from rest_framework import serializers
 from card_maker_app.models import Card
 from card_maker_app.serializers import UserSerializer, MoveSerializer
 
+def required(value):
+    if value is None:
+        raise serializers.ValidationError('This field is required')
+
 
 class CardSerializer(serializers.ModelSerializer):
     move_1 = MoveSerializer()
@@ -14,6 +18,7 @@ class CardSerializer(serializers.ModelSerializer):
         model = Card
         fields = (
             'id',
+            'name',
             'sub_name',
             'hit_points',
             'card_number',
@@ -47,3 +52,9 @@ class CardSerializer(serializers.ModelSerializer):
             'move_3',
             'user'
         )
+
+
+class CardCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Card
+        fields = '__all__'

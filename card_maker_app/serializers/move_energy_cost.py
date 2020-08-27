@@ -12,3 +12,15 @@ class MoveEnergyCostSerializer(serializers.ModelSerializer):
             'type',
             'amount',
         )
+
+
+class MoveEnergyCostCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MoveEnergyCost
+        fields = (
+            'id',
+            'move',
+            'type',
+            'amount',
+        )

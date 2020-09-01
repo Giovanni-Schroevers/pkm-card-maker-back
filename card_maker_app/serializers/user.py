@@ -34,6 +34,17 @@ class UserCreateSerializer(serializers.ModelSerializer):
         )
 
 
+class UserOverviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'photo'
+        )
+
+
 class EmailSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)
 

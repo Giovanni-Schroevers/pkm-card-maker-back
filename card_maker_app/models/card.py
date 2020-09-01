@@ -8,9 +8,9 @@ class Card(models.Model):
     name = models.CharField(max_length=255)
     sub_name = models.CharField(max_length=255, null=True, blank=True)
     hit_points = models.IntegerField(null=True, blank=True)
-    card_number = models.CharField(max_length=255)
-    total_cards = models.CharField(max_length=255)
-    illustrator = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=255, null=True, blank=True)
+    total_cards = models.CharField(max_length=255, null=True, blank=True)
+    illustrator = models.CharField(max_length=255, null=True, blank=True)
     weakness_amount = models.IntegerField(null=True, blank=True)
     weakness_type = models.ForeignKey(
         Type, on_delete=models.PROTECT, related_name='card_weakness', null=True, blank=True

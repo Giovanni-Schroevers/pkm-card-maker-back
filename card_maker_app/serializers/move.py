@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
 from card_maker_app.models import Move
-from card_maker_app.serializers import MoveEnergyCostSerializer
+from card_maker_app.serializers import MoveEnergyCostSerializer, ReadOnlyMoveEnergyCostSerializer
 
 
 class MoveSerializer(serializers.ModelSerializer):
-    move_energy_cost = MoveEnergyCostSerializer()
+    energy_cost = MoveEnergyCostSerializer(many=True)
 
     class Meta:
         model = Move
@@ -14,7 +14,21 @@ class MoveSerializer(serializers.ModelSerializer):
             'name',
             'damage',
             'text',
-            'move_energy_cost',
+            'energy_cost',
+        )
+
+
+class ReadOnlyMoveSerializer(serializers.ModelSerializer):
+    energy_cost = ReadOnlyMoveEnergyCostSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Move
+        fields = (
+            'id',
+            'name',
+            'damage',
+            'text',
+            'energy_cost',
         )
 
 

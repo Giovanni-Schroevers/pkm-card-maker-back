@@ -1,7 +1,11 @@
+from collections import OrderedDict
+
 from rest_framework import serializers
 
 from card_maker_app.models import Card
-from card_maker_app.serializers import UserSerializer, MoveSerializer
+from card_maker_app.serializers import MoveSerializer, AbilitySerializer, UserOverviewSerializer, \
+    ReadOnlyMoveSerializer
+
 
 def required(value):
     if value is None:
@@ -9,52 +13,27 @@ def required(value):
 
 
 class CardSerializer(serializers.ModelSerializer):
-    move_1 = MoveSerializer()
-    move_2 = MoveSerializer()
-    move_3 = MoveSerializer()
-    user = UserSerializer()
+    move_1 = ReadOnlyMoveSerializer()
+    move_2 = ReadOnlyMoveSerializer()
+    move_3 = ReadOnlyMoveSerializer()
+    user = UserOverviewSerializer()
+    ability = AbilitySerializer()
 
     class Meta:
         model = Card
-        fields = (
-            'id',
-            'name',
-            'sub_name',
-            'hit_points',
-            'card_number',
-            'total_cards',
-            'illustrator',
-            'weakness_amount',
-            'weakness_type',
-            'weakness_type',
-            'resistance_amount',
-            'resistance_type',
-            'retreat_cost',
-            'pokedex_entry',
-            'description',
-            'prevolve_name',
-            'background_image',
-            'card_image',
-            'top_image',
-            'type_image',
-            'prevolve_image',
-            'supertype',
-            'type',
-            'subtype',
-            'rarity',
-            'variation',
-            'rotation',
-            'rarity_icon',
-            'set',
-            'base_set',
-            'move_1',
-            'move_2',
-            'move_3',
-            'user'
-        )
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        result = super(CardSerializer, self).to_representation(instance)
+        return OrderedDict([(key, result[key]) for key in result if result[key] is not None])
 
 
 class CardCreateSerializer(serializers.ModelSerializer):
+    move_1 = MoveSerializer(required=False, allow_null=True)
+    move_2 = MoveSerializer(required=False, allow_null=True)
+    move_3 = MoveSerializer(required=False, allow_null=True)
+    ability = AbilitySerializer()
+
     class Meta:
         model = Card
         fields = '__all__'

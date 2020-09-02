@@ -21,6 +21,15 @@ class IsAdminOrUpdateSelf(permissions.IsAdminUser):
             return True
 
 
+class IsAdminOrOwner(permissions.IsAdminUser):
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return super(IsAdminOrOwner, self).has_permission(request, view) \
+                or request.user.pk == obj.pk
+
+
 class IsAdminOrGetRequest(permissions.IsAdminUser):
     def has_permission(self, request, view):
         if request.method == 'GET':

@@ -7,7 +7,7 @@ class Move(models.Model):
     name = models.CharField(max_length=255)
     damage = models.CharField(max_length=255, null=True, blank=True)
     text = models.TextField(null=True, blank=True)
-    energy_cost = models.ManyToManyField(Type, through='MoveEnergyCost', related_name='move_energy_cost')
+    types = models.ManyToManyField(Type, through='MoveEnergyCost', related_name='move_energy_cost')
 
     def __str__(self):
         return self.name

@@ -8,7 +8,6 @@ class AbilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Ability
         fields = (
-            'id',
             'name',
             'text',
         )

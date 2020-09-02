@@ -24,7 +24,6 @@ class ReadOnlyMoveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Move
         fields = (
-            'id',
             'name',
             'damage',
             'text',

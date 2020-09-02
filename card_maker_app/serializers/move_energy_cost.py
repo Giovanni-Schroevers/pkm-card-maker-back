@@ -5,6 +5,12 @@ from card_maker_app.models import MoveEnergyCost
 
 class MoveEnergyCostSerializer(serializers.ModelSerializer):
 
+    def validate_type(self, energy_type):
+        if not energy_type.is_energy:
+            raise serializers.ValidationError(f'You can not use the type {energy_type.name} for a move cost')
+
+        return energy_type
+
     class Meta:
         model = MoveEnergyCost
         fields = (
@@ -15,11 +21,10 @@ class MoveEnergyCostSerializer(serializers.ModelSerializer):
 
 
 class ReadOnlyMoveEnergyCostSerializer(serializers.ModelSerializer):
-    amount = serializers.IntegerField(source='move_energy_cost.amount', read_only=True)
 
     class Meta:
         model = MoveEnergyCost
-        fields = ('id', 'amount')
+        fields = ('type', 'amount',)
 
 
 class MoveEnergyCostCreateSerializer(serializers.ModelSerializer):

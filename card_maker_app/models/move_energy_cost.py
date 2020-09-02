@@ -5,7 +5,7 @@ from card_maker_app.models.move import Move
 
 
 class MoveEnergyCost(models.Model):
-    move = models.ForeignKey(Move, on_delete=models.CASCADE)
+    move = models.ForeignKey(Move, on_delete=models.CASCADE, related_name='energy_cost')
     type = models.ForeignKey(Type, on_delete=models.PROTECT)
     amount = models.IntegerField()
 

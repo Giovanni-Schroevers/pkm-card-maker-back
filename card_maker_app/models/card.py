@@ -49,6 +49,7 @@ class Card(models.Model):
     move_2 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move2')
     move_3 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move3')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    full_card_image = models.ImageField(upload_to='card/')
 
     def __str__(self):
         return self.name

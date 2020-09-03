@@ -12,4 +12,4 @@ from .ability import AbilitySerializer
 from .move_energy_cost import MoveEnergyCostSerializer, MoveEnergyCostCreateSerializer, ReadOnlyMoveEnergyCostSerializer
 from .move import MoveSerializer, MoveCreateSerializer, ReadOnlyMoveSerializer
 from .card import CardSerializer, CardCreateSerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
-                  BaseEnergyCardSerializer
+                  BaseEnergyCardSerializer, CardOverviewSerializer

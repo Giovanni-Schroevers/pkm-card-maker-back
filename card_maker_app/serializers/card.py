@@ -43,8 +43,8 @@ class CardCreateSerializer(serializers.ModelSerializer):
         elif card['supertype'].short_name != 'Energy':
             raise serializers.ValidationError(f'Type is required for a {card["supertype"].name}')
 
-        # if 'background_image' not in card and 'card_image' not in card and 'top_image' not in card:
-        #     raise serializers.ValidationError('A card requires at least a background, card or top image')
+        if 'background_image' not in card and 'card_image' not in card and 'top_image' not in card:
+            raise serializers.ValidationError('A card requires at least a background, card or top image')
 
         if 'subtype' in card:
             if card['subtype'] not in card['supertype'].subtypes.all():
@@ -92,6 +92,7 @@ class TrainerCardSerializer(serializers.ModelSerializer):
             'custom_set_image',
             'top_image',
             'user',
+            'full_card_image',
         )
 
 
@@ -108,6 +109,7 @@ class BaseEnergyCardSerializer(serializers.ModelSerializer):
             'top_image',
             'type_image',
             'user',
+            'full_card_image',
         )
 
 
@@ -133,4 +135,16 @@ class SpecialEnergyCardSerializer(serializers.ModelSerializer):
             'top_image',
             'type_image',
             'user',
+            'full_card_image',
+        )
+
+
+class CardOverviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Card
+        fields = (
+            'id',
+            'name',
+            'full_card_image',
         )

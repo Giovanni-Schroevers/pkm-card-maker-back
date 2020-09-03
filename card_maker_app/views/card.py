@@ -11,7 +11,7 @@ from card_maker_app.permissions.admin import IsAdminOrOwner
 from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, TypeSerializer, BaseSetSerializer, \
     SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer, \
     CardCreateSerializer, MoveCreateSerializer, AbilitySerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
-    BaseEnergyCardSerializer
+    BaseEnergyCardSerializer, CardOverviewSerializer
 from card_maker_app.utils.energy_cost import save_energy_cost
 
 
@@ -23,7 +23,7 @@ class CardViewSet(viewsets.ModelViewSet):
     def list(self, request, *args, **kwargs):
         user = request.user
         cards = Card.objects.filter(user=user)
-        return Response(CardSerializer(cards, many=True).data)
+        return Response(CardOverviewSerializer(cards, many=True, context={'request': request}).data)
 
     def create(self, request, *args, **kwargs):
         data = request.data
@@ -48,7 +48,7 @@ class CardViewSet(viewsets.ModelViewSet):
                         save_energy_cost(energy_cost, saved_move)
                     card[move] = saved_move
 
-            if card['ability']:
+            if 'ability' in card:
                 ability_serializer = AbilitySerializer(data=card['ability'])
                 ability_serializer.is_valid(raise_exception=True)
                 ability = ability_serializer.save()
@@ -69,7 +69,7 @@ class CardViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             saved_card = serializer.save()
 
-        return Response(CardSerializer(saved_card).data, status.HTTP_201_CREATED)
+        return Response(CardSerializer(saved_card, context={'request': request}).data, status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
         old_card = self.get_object()
@@ -122,7 +122,7 @@ class CardViewSet(viewsets.ModelViewSet):
             serializer.is_valid(raise_exception=True)
             saved_card = serializer.save()
 
-        return Response(CardSerializer(saved_card).data, status.HTTP_200_OK)
+        return Response(CardSerializer(saved_card, context={'request': request}).data, status.HTTP_200_OK)
 
     @action(detail=False, methods=['get'])
     def options(self, request):

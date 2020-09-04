@@ -9,7 +9,7 @@ from django.template.loader import get_template
 from django.utils.timezone import now
 from rest_framework import viewsets, status
 from rest_framework.decorators import permission_classes, action
-from rest_framework.exceptions import ParseError, NotFound
+from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
 from card_maker_app.models import User, PasswordResetToken

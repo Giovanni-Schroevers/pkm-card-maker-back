@@ -21,7 +21,7 @@
     "fields": {
       "short_name": "Promo",
       "name": "Promo",
-      "has_name_outline": false,
+      "has_name_outline": true,
       "has_black_top_text": false,
       "has_v_style": true
     }

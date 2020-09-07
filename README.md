@@ -4,7 +4,7 @@ As per conventions, commands to run in the terminal are prefixed with `$`. This 
 
 ## Setup
 
-This setup assumes that you have python 3.7 and pip installed.
+**This setup requires you to have a 64-bit python 3.7 and pip installed.**
 A virtual environment will be used to install dependencies.
 
 - Install pipenv with `$ pip install pipenv`
@@ -32,12 +32,13 @@ Go to Django admin and add a new Application with the following configuration:
 
 ### Troubleshooting
 
-**If you get the error `ModuleNotFoundError: No module named 'MySQLClient'` while running the server, you need to install the mysqlclient.**  
-Make sure you are running a 64 bit version of python  
+**If you get the error `ModuleNotFoundError: No module named 'MySQLClient'` while running the server, you need to install the mysqlclient.**
+
+## Make sure you are running the 64 bit version of python  
 
 If it does not work try to:
 - Download the client for python version 'cp37' [here](https://pypi.org/project/mysqlclient/#files) (64bit) or [here](https://www.lfd.uci.edu/~gohlke/pythonlibs/#mysqlclient) (32 and 64 bit)
-- Install the client by running `pip install <path-to-file>
+- Install the client by running `pipenv install <path-to-file>`
 
 ### Pipenv
 

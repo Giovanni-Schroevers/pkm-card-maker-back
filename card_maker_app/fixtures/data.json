@@ -22,7 +22,8 @@
       "short_name": "Promo",
       "name": "Promo",
       "has_name_outline": false,
-      "has_black_top_text": false
+      "has_black_top_text": false,
+      "has_v_style": true
     }
   },
   {
@@ -32,7 +33,8 @@
       "short_name": "FA",
       "name": "Full Art",
       "has_name_outline": true,
-      "has_black_top_text": false
+      "has_black_top_text": false,
+      "has_v_style": false
     }
   },
   {
@@ -42,7 +44,8 @@
       "short_name": "Gold_FA",
       "name": "Golden Full Art",
       "has_name_outline": true,
-      "has_black_top_text": true
+      "has_black_top_text": true,
+      "has_v_style": false
     }
   },
   {
@@ -52,7 +55,8 @@
       "short_name": "Rainbow",
       "name": "Rainbow",
       "has_name_outline": false,
-      "has_black_top_text": false
+      "has_black_top_text": false,
+      "has_v_style": false
     }
   },
   {
@@ -135,7 +139,8 @@
       "has_v_symbol": false,
       "has_name_outline": true,
       "has_vmax_symbol": true,
-      "variations": [1, 2]
+      "variations": [1, 2],
+      "rarities": [4]
     }
   },
   {

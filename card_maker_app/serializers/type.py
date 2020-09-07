@@ -17,7 +17,8 @@ class TypeSerializer(serializers.ModelSerializer):
             'has_sub_name',
             'has_special_style',
             'is_energy',
-            'rarities'
+            'rarities',
+            'supertypes',
         )
 
 

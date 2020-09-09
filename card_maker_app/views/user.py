@@ -29,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
         user.set_password(serializer.data['password'])
         user.save()
 
-        return Response(UserSerializer(user).data, status.HTTP_201_CREATED)
+        return Response(UserSerializer(user, context={'request': request}).data, status.HTTP_201_CREATED)
 
     @action(detail=False, methods=['post'])
     def request_reset_password(self, request):

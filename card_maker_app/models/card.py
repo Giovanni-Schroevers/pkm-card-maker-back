@@ -1,4 +1,3 @@
-from django.core.validators import FileExtensionValidator
 from django.db import models
 
 from card_maker_app.models import Supertype, Type, Subtype, Rarity, Rotation, RarityIcon, Set, BaseSet, Move, \
@@ -6,6 +5,9 @@ from card_maker_app.models import Supertype, Type, Subtype, Rarity, Rotation, Ra
 
 
 class Card(models.Model):
+    def directory_path(instance, filename):
+        return f'{instance.user.id}/cards/{instance.id}/{filename}'
+
     name = models.CharField(max_length=255)
     sub_name = models.CharField(max_length=255, null=True, blank=True)
     hit_points = models.IntegerField(null=True, blank=True)
@@ -24,17 +26,12 @@ class Card(models.Model):
     pokedex_entry = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     prevolve_name = models.CharField(max_length=255, null=True, blank=True)
-    background_image = models.FileField(
-        upload_to='card/',
-        null=True,
-        blank=True,
-        validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg', 'jpeg'])]
-    )
-    card_image = models.ImageField(upload_to='card/', null=True, blank=True)
-    top_image = models.ImageField(upload_to='card/', null=True, blank=True)
-    type_image = models.ImageField(upload_to='card/', null=True, blank=True)
-    prevolve_image = models.ImageField(upload_to='card/', null=True, blank=True)
-    custom_set_image = models.ImageField(upload_to='card/', null=True, blank=True)
+    background_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
+    card_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
+    top_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
+    type_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
+    prevolve_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
+    custom_set_image = models.ImageField(upload_to=directory_path, null=True, blank=True)
     supertype = models.ForeignKey(Supertype, on_delete=models.PROTECT)
     type = models.ForeignKey(Type, on_delete=models.PROTECT, related_name='card_type', null=True, blank=True)
     subtype = models.ForeignKey(Subtype, on_delete=models.PROTECT, null=True, blank=True)
@@ -49,7 +46,7 @@ class Card(models.Model):
     move_2 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move2')
     move_3 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move3')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    full_card_image = models.ImageField(upload_to='card/')
+    full_card_image = models.ImageField(upload_to=directory_path)
 
     def __str__(self):
         return self.name

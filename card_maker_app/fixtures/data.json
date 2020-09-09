@@ -151,7 +151,7 @@
       "name": "Tool",
       "has_prevolve": false,
       "has_pokedex_entry": false,
-      "has_description": false,
+      "has_description": true,
       "has_white_top_text": false,
       "has_v_style": false,
       "has_v_symbol": false,

@@ -13,4 +13,5 @@ class RaritySerializer(serializers.ModelSerializer):
             'name',
             'has_name_outline',
             'has_black_top_text',
+            'has_v_style',
         )

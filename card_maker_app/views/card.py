@@ -1,5 +1,10 @@
+import io
+
+import imgkit
 from django.forms import model_to_dict
-from django.http import QueryDict
+from django.http import QueryDict, HttpResponse
+from django.templatetags.static import static
+from django.contrib.staticfiles.storage import staticfiles_storage
 from rest_framework import viewsets, status
 from rest_framework.decorators import permission_classes, action
 from rest_framework.response import Response
@@ -147,3 +152,10 @@ class CardViewSet(viewsets.ModelViewSet):
             'rotations': rotations,
             'rarity_icons': rarity_icons
         })
+
+    @action(detail=False, methods=['post'])
+    def html_to_image(self, request):
+        return HttpResponse(
+            imgkit.from_string(request.data['html'], False, css='F:\projects\pkm-card-maker-back\card_maker_app\static/card.css'),
+            content_type="image/png"
+        )

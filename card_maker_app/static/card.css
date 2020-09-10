@@ -1,0 +1,612 @@
+@import url(https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap);*,:after,:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Asap Condensed",sans-serif
+}
+
+@font-face {
+  font-family: "Gill Sans Std";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/GillSansStd.3c256200.otf) format("opentype")
+}
+
+@font-face {
+  font-family: "Gill Sans Std Bold";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/GillSansStd-Bold.fd346fff.otf) format("opentype")
+}
+
+@font-face {
+  font-family: "Gill Sans Condensed";
+  src: url("https://lvandernoll.github.io/pkm-card-maker/static/media/Gill Sans Condensed.a67d86af.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "Gill Sans";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/GillSans.2e40a82b.otf) format("opentype")
+}
+
+@font-face {
+  font-family: "Futura LT Medium";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/FuturaLTMedium.11f68b85.ttf) format("truetype")
+}
+
+@font-face {
+  font-family: "Futura Std";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/FuturaStdMedium.14792084.otf) format("opentype")
+}
+
+@font-face {
+  font-family: "Frutiger LT Std";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/FrutigerLTStd-Roman.04f897d6.otf) format("opentype")
+}
+
+@font-face {
+  font-family: "Pokemon Web Font";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/ptcg-webfont.687a5d95.woff2) format("woff2")
+}
+
+@font-face {
+  font-family: "Optima";
+  src: url(https://lvandernoll.github.io/pkm-card-maker/static/media/Optima\ Roman.1e12443d.ttf) format("truetype")
+}
+
+.CardDisplay_ptcgText__QQ7Xc {
+  font-family: "Pokemon Web Font",sans-serif!important
+}
+
+.CardDisplay_italicText__2o487 {
+  font-style: italic
+}
+
+.CardDisplay_card__isaOg {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.CardDisplay_card__isaOg.CardDisplay_whiteText__2pvQy {
+  color: #fff!important
+}
+
+.CardDisplay_name__1V1kS {
+  font-family: "Gill Sans Std",sans-serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+  white-space: pre;
+  position: absolute;
+  top: 7.2%;
+  left: 6.7%;
+  font-size: 2em
+}
+
+.CardDisplay_namePokemon__1pzgz {
+  left: 20%;
+  top: 3.3%;
+  font-size: 1.9em;
+  display: flex;
+  align-items: center
+}
+
+.CardDisplay_nameRaidBoss__12l3h {
+  font-size: 2.75em;
+  left: 5.1%;
+  top: 2.45%;
+  display: flex;
+  align-items: center;
+  letter-spacing: .03em
+}
+
+.CardDisplay_nameRaidBoss__12l3h .CardDisplay_nameIcon__2xvS8 {
+  height: .8em;
+  margin-left: 0
+}
+
+.CardDisplay_nameOutline__1LUMF {
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  color: #000
+}
+
+.CardDisplay_nameIcon__2xvS8 {
+  height: 1em;
+  margin-left: .1em
+}
+
+.CardDisplay_hitpoints__3nzXl {
+  font-family: "Futura LT Medium",sans-serif;
+  font-weight: 700;
+  font-size: 1.6em
+}
+
+.CardDisplay_hitpointsWrapper__2lI5p {
+  position: absolute;
+  top: 4%;
+  right: 12.9%
+}
+
+.CardDisplay_hitpointsWrapperV__LInzl {
+  color: #fff;
+  text-shadow: -.6px -.6px 0 #000,0 -.6px 0 #000,.6px -.6px 0 #000,.6px 0 0 #000,.6px .6px 0 #000,0 .6px 0 #000,-.6px .6px 0 #000,-.6px 0 0 #000;
+  top: 3.5%;
+  right: 14%;
+  font-size: 1.2em
+}
+
+.CardDisplay_hitpointsWrapperBlackOutline__32Vp3 {
+  color: #000;
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  top: 3.5%;
+  right: 14%;
+  font-size: 1.2em
+}
+
+.CardDisplay_hitpointsWrapperRaidBoss__2PKNX {
+  color: #fff;
+  text-shadow: -.6px -.6px 0 #000,0 -.6px 0 #000,.6px -.6px 0 #000,.6px 0 0 #000,.6px .6px 0 #000,0 .6px 0 #000,-.6px .6px 0 #000,-.6px 0 0 #000;
+  font-size: 1.3em;
+  right: 11.8%;
+  top: 3%
+}
+
+.CardDisplay_hitpointsWrapperRaidBoss__2PKNX .CardDisplay_hitpoints__3nzXl {
+  letter-spacing: -.07em
+}
+
+.CardDisplay_hitpointsWrapperRaidBoss__2PKNX .CardDisplay_hitpointsHP__2j8Tj {
+  font-size: .7em
+}
+
+.CardDisplay_hitpointsHP__2j8Tj {
+  font-family: "Gill Sans Std Bold",sans-serif;
+  font-weight: bolder;
+  font-size: .6em;
+  margin-right: 2px
+}
+
+.CardDisplay_prevolveName__8ZdnF {
+  font-family: "Frutiger LT Std",sans-serif;
+  font-style: italic;
+  font-size: .65em;
+  position: absolute;
+  top: 9.9%;
+  left: 17%;
+  width: 15em;
+  color: #000
+}
+
+.CardDisplay_subname__1V1AH {
+  font-family: "Gill Sans Std",sans-serif;
+  font-style: italic;
+  font-size: .98em;
+  color: #6b6c6e;
+  position: absolute;
+  top: 9.2%;
+  right: 6.7%
+}
+
+.CardDisplay_pokedexEntry__1yK_U {
+  font-family: "Frutiger LT Std",sans-serif;
+  font-size: .56em;
+  text-align: center;
+  letter-spacing: .03em;
+  color: #000;
+  position: absolute;
+  top: 48.25%;
+  left: 10%;
+  width: 80%
+}
+
+.CardDisplay_movesWrapper__1C3yQ {
+  position: absolute;
+  top: 54.2%;
+  left: 5.4%;
+  height: 29.5%;
+  width: 90%;
+  display: flex;
+  flex-direction: column
+}
+
+.CardDisplay_movesWrapperV__3qPP4 {
+  justify-content: flex-end;
+  height: 31%;
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  color: #000;
+  top: 53%
+}
+
+.CardDisplay_abilityNameWrapper__f9Sh8 {
+  color: #a30000;
+  display: flex;
+  align-items: center;
+  height: .95em;
+  font-size: 1.3em;
+  margin-right: 5px
+}
+
+.CardDisplay_abilityIcon__1Q8VX {
+  height: 100%;
+  margin-right: 6px
+}
+
+.CardDisplay_abilityIconV__137Aq {
+  height: 110%
+}
+
+.CardDisplay_abilityText__2j1TT,.CardDisplay_abilityText__2j1TT>* {
+  font-family: "Gill Sans",sans-serif;
+  text-align: justify;
+  width: 93%;
+  margin: 4px auto 0;
+  line-height: 1.2
+}
+
+.CardDisplay_move__WKXjI {
+  margin: auto 0
+}
+
+.CardDisplay_moveMultiple__1JmGh {
+  margin-top: 1.6em;
+  margin-bottom: 1em
+}
+
+.CardDisplay_moveV__XkELM {
+  margin: .8em 0 0
+}
+
+.CardDisplay_moveName__Kt0y4 {
+  font-family: "Gill Sans Condensed",sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: -.04em;
+  width: 69%;
+  position: absolute;
+  left: 29.5%
+}
+
+.CardDisplay_moveNameWrapper__3X_3R {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  width: 95.5%;
+  margin: 0 auto
+}
+
+.CardDisplay_moveNameShoved__2W1ZH {
+  left: 35.5%
+}
+
+.CardDisplay_moveCost__gdTKO {
+  display: flex;
+  align-items: center;
+  margin-bottom: .2em
+}
+
+.CardDisplay_moveEnergy__23uIB {
+  width: 1.2em;
+  margin-right: .1em
+}
+
+.CardDisplay_moveDamage__2iLk9 {
+  font-family: "Futura LT Medium",sans-serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  margin-left: auto;
+  margin-right: 6px
+}
+
+.CardDisplay_moveText__1bbM1,.CardDisplay_moveText__1bbM1>* {
+  font-family: "Gill Sans",sans-serif;
+  text-align: justify;
+  width: 94%;
+  margin: 1.5px auto 0;
+  line-height: 1.2;
+  min-height: 1.8em
+}
+
+.CardDisplay_moveTextV__2PEUu {
+  min-height: unset
+}
+
+.CardDisplay_typeBar__2vmGi {
+  font-family: "Futura LT Medium",sans-serif;
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #000;
+  position: absolute;
+  bottom: 11.3%;
+  left: 0;
+  height: 2.6%;
+  width: 100%;
+  display: flex
+}
+
+.CardDisplay_typeBar__2vmGi.CardDisplay_whiteText__2pvQy {
+  color: #fff
+}
+
+.CardDisplay_weakness__1ATOR {
+  display: flex;
+  margin-left: 15.5%;
+  width: 14%
+}
+
+.CardDisplay_weaknessIcon__5pz9x {
+  height: 100%;
+  margin-right: 4px
+}
+
+.CardDisplay_resistance__1w_BD {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 42%;
+  height: 100%
+}
+
+.CardDisplay_resistanceIcon__1TBxe {
+  height: 100%;
+  margin-right: 4px
+}
+
+.CardDisplay_retreatCost__3_z5H {
+  margin-right: 7%;
+  margin-left: auto;
+  width: 21%
+}
+
+.CardDisplay_retreatCostIcon__3I3kn {
+  height: 100%
+}
+
+.CardDisplay_illustrator__1SKuG {
+  font-family: "Futura Std",sans-serif;
+  font-size: .6em;
+  font-style: oblique;
+  position: absolute;
+  bottom: 7%;
+  left: 6.7%
+}
+
+.CardDisplay_setIcon__1rqlA {
+  position: absolute;
+  bottom: 3.6%;
+  left: 6.3%;
+  height: 1.2em
+}
+
+.CardDisplay_setNumber__2O4FK {
+  font-family: "Frutiger Std",sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: .69em;
+  position: absolute;
+  bottom: 3.7%;
+  left: 16%
+}
+
+.CardDisplay_rotation__1RbOP {
+  position: absolute;
+  bottom: 3.6%;
+  left: 12.2%;
+  height: 1.1em
+}
+
+.CardDisplay_rarityIcon__2iqGF {
+  height: .8em;
+  margin-left: 3px
+}
+
+.CardDisplay_cardInfoWhite__33DcQ,.CardDisplay_cardInfoWhite__33DcQ>* {
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  color: #000
+}
+
+.CardDisplay_description__BIr5j {
+  font-family: "Gill Sans",sans-serif;
+  font-size: 1em;
+  text-align: justify;
+  line-height: 1.45;
+  white-space: pre-line
+}
+
+.CardDisplay_descriptionWrapper__3p9vS {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 60%;
+  left: 12.1%;
+  height: 18.7%;
+  width: 76%
+}
+
+.CardDisplay_descriptionWrapperEnergy__1DSYk {
+  top: 69.7%;
+  width: 82.6%;
+  left: 8.5%
+}
+
+.CardDisplay_descriptionWrapperEnergy__1DSYk .CardDisplay_description__BIr5j {
+  line-height: 1.05
+}
+
+.CardDisplay_descriptionWrapperPokemon__1WRSF {
+  top: unset;
+  left: unset;
+  bottom: 3.5%;
+  right: 6.5%;
+  height: 7%;
+  width: 58%;
+  justify-content: flex-end
+}
+
+.CardDisplay_descriptionWrapperPokemonOutline__7YWtg {
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff
+}
+
+.CardDisplay_descriptionWrapperPokemon__1WRSF .CardDisplay_description__BIr5j {
+  font-family: "Optima",sans-serif;
+  font-size: .77em;
+  text-align: right;
+  line-height: 1.1;
+  letter-spacing: -.034em;
+  white-space: unset
+}
+
+.CardDisplay_prevolveImage__1wD8H {
+  max-height: 100%;
+  max-width: 100%
+}
+
+.CardDisplay_prevolveImageWrapper__3HShx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 6.7%;
+  left: 4.5%;
+  height: 10%;
+  width: 11%
+}
+
+.CardDisplay_image__2ZGOH {
+  width: 100%;
+  position: relative;
+  z-index: -2;
+  vertical-align: middle;
+  border-radius: 25px
+}
+
+.CardDisplay_backgroundImage__12fr_,.CardDisplay_imageLayer1__PFYfu,.CardDisplay_imageLayer2__1PAIT {
+  position: absolute;
+  width: 100%;
+  max-height: 100%;
+  z-index: -100;
+  border-radius: 25px
+}
+
+.CardDisplay_backgroundImage__12fr_ {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 27px
+}
+
+.CardDisplay_imageLayer1__PFYfu {
+  z-index: -75
+}
+
+.CardDisplay_imageLayer2__1PAIT {
+  z-index: -1;
+  left: 0
+}
+
+.CardDisplay_typeImage__3nS1a {
+  box-sizing: content-box;
+  position: absolute;
+  border-radius: 100%;
+  right: 1.2em;
+  top: 1.25em;
+  height: 2em;
+  width: 2em;
+  border: 3px solid #fff;
+  background-color: #fff
+}
+
+.CardDisplay_typeImageSpecial__g_LJH {
+  top: 1.15em;
+  height: 1.8em;
+  width: 1.8em
+}
+
+.CardDisplay_background__3DagX {
+  z-index: -200;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 35px
+}
+
+.CardDisplay_raidBossType__hdVwV {
+  position: absolute;
+  right: 2.6%;
+  top: 4%;
+  height: 5%
+}
+
+.CardDisplay_raidBossNumber__1Pzn0 {
+  font-family: "Frutiger Std",sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: .69em;
+  position: absolute;
+  bottom: .9%;
+  right: 5%;
+  color: #fff;
+  font-size: .6em;
+  font-weight: 400
+}
+
+.CardDisplay_raidBossMovesWrapper__2AHkm {
+  position: absolute;
+  bottom: 5%;
+  left: 18%;
+  width: 76%;
+  height: 39%
+}
+
+.CardDisplay_raidBossMove__1-nE0 {
+  position: relative;
+  height: 30%;
+  width: 100%;
+  margin-bottom: 3.25%
+}
+
+.CardDisplay_raidBossMoveName__11O5H {
+  font-family: "Gill Sans Condensed",sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  letter-spacing: -.04em;
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  font-size: 1.8em;
+  letter-spacing: .05em
+}
+
+.CardDisplay_raidBossMoveText__2vBiq {
+  display: block;
+  font-family: "Gill Sans",sans-serif;
+  text-align: justify;
+  font-size: .95em;
+  bottom: 3%;
+  left: 0;
+  width: 67%;
+  height: 48%
+}
+
+.CardDisplay_raidBossMoveDamage__2UeXY,.CardDisplay_raidBossMoveText__2vBiq {
+  text-shadow: -.6px -.6px 0 #fff,0 -.6px 0 #fff,.6px -.6px 0 #fff,.6px 0 0 #fff,.6px .6px 0 #fff,0 .6px 0 #fff,-.6px .6px 0 #fff,-.6px 0 0 #fff;
+  font-weight: 700;
+  position: absolute
+}
+
+.CardDisplay_raidBossMoveDamage__2UeXY {
+  font-family: "Futura LT Medium",sans-serif;
+  letter-spacing: .02em;
+  font-size: 2em;
+  top: 0;
+  right: 10.5%;
+  height: 100%;
+  display: flex;
+  align-items: center
+}
+
+.CardDisplay_raidBossMoveDamageShoved__1l0r1 {
+  right: 5%
+}
+
+body {
+    font-size: 35px;
+}

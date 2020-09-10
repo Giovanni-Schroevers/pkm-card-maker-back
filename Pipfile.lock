@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ac2db73fff7338e77cdcce72df4fc4bc5032b4298ca5b9c572a66e9907836186"
+            "sha256": "a5614ee54a1d420933df04a91ee7c457d46ee6787176db57c51b068f2384f719"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -147,6 +147,14 @@
             "index": "pypi",
             "version": "==3.11.1"
         },
+        "djangorestframework-xml": {
+            "hashes": [
+                "sha256:35f6c811d0ab8c8466b26db234e16a2ed32d76381715257aebf4c7be2c202ca1",
+                "sha256:975955fbb0d49ac44a90bdeb33b7923d95b79884d283f983e116c80a936ef4d0"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
+        },
         "drf-social-oauth2": {
             "hashes": [
                 "sha256:817bb0dc8daa472f00e04da081d97291273805509339998c9e8e63b74e3b956a"
@@ -161,6 +169,13 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.10"
+        },
+        "imgkit": {
+            "hashes": [
+                "sha256:29a12adf8dc3f2c65c465bcb0568393573b8d52c4be2a4a9230b162a1ac53c8d"
+            ],
+            "index": "pypi",
+            "version": "==1.0.2"
         },
         "mysqlclient": {
             "hashes": [

@@ -33,6 +33,7 @@ class CardCreateSerializer(serializers.ModelSerializer):
     move_2 = MoveSerializer(required=False, allow_null=True)
     move_3 = MoveSerializer(required=False, allow_null=True)
     ability = AbilitySerializer(required=False, allow_null=True)
+    card_html = serializers.CharField(required=True)
 
     def validate(self, card):
         if 'type' in card:
@@ -93,6 +94,7 @@ class TrainerCardSerializer(serializers.ModelSerializer):
             'top_image',
             'user',
             'full_card_image',
+            'card_html',
         )
 
 

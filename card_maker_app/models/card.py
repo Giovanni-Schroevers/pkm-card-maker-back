@@ -6,6 +6,8 @@ from card_maker_app.models import Supertype, Type, Subtype, Rarity, Rotation, Ra
 
 class Card(models.Model):
     def directory_path(instance, filename):
+        if not instance.id:
+            return filename
         return f'{instance.user.id}/cards/{instance.id}/{filename}'
 
     name = models.CharField(max_length=255)

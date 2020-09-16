@@ -95,3 +95,10 @@ class UserViewSet(viewsets.ModelViewSet):
         token.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['get'])
+    def user_by_token(self, request):
+        if not request.user.is_authenticated:
+            return Response({'detail': 'Authentication credentials were not provided.'}, status.HTTP_401_UNAUTHORIZED)
+
+        return Response(UserSerializer(request.user).data)

@@ -12,8 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'first_name',
-            'last_name',
-            'dob',
+            'over13',
             'photo',
         )
 
@@ -27,8 +26,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'username',
             'email',
             'first_name',
-            'last_name',
-            'dob',
+            'over13',
             'photo',
             'password'
         )

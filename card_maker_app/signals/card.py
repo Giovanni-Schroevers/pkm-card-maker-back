@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
@@ -31,10 +32,15 @@ def update_image_path(sender, instance, created, **kwargs):
                     old_name = image_file.name
                     if not old_name:
                         pass
+
+                    print(old_name)
                     new_name = os.path.basename(old_name)
                     new_path = os.path.join(settings.MEDIA_ROOT, sender.directory_path(instance, new_name))
                     if not os.path.exists(os.path.dirname(new_path)):
                         os.makedirs(os.path.dirname(new_path))
-                    os.rename(image_file.path, new_path)
+                    if old_name == 'default.png':
+                        shutil.copy(image_file.path, new_path)
+                    else:
+                        os.rename(image_file.path, new_path)
                     image_file.name = sender.directory_path(instance, new_name)
         instance.save()

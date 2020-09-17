@@ -1,5 +1,6 @@
 from .supertype import SupertypeSerializer
-from .user import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, UserOverviewSerializer
+from .user import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
+    UserOverviewSerializer, UpdateEmailSerializer
 from .type import TypeSerializer, EnergyCostTypeSerializer
 from .subtype import SubtypeSerializer
 from .base_set import BaseSetSerializer

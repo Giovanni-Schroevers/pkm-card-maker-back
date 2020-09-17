@@ -33,7 +33,6 @@ def update_image_path(sender, instance, created, **kwargs):
                     if not old_name:
                         pass
 
-                    print(old_name)
                     new_name = os.path.basename(old_name)
                     new_path = os.path.join(settings.MEDIA_ROOT, sender.directory_path(instance, new_name))
                     if not os.path.exists(os.path.dirname(new_path)):

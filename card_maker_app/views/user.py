@@ -14,7 +14,8 @@ from rest_framework.response import Response
 
 from card_maker_app.models import User, PasswordResetToken
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf
-from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer
+from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
+    UpdateEmailSerializer
 
 
 @permission_classes((IsAdminOrUpdateSelf, IsAdminDelete))
@@ -43,7 +44,7 @@ class UserViewSet(viewsets.ModelViewSet):
         except User.DoesNotExist:
             return Response(
                 {'detail': 'A new mail has been sent to your mailbox at: ' + data['email']},
-                status=status.HTTP_200_OK
+                status.HTTP_200_OK
             )
 
         try:
@@ -76,7 +77,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return Response(
             {'detail': 'A new mail has been sent to your mailbox at: ' + data['email']},
-            status=status.HTTP_200_OK
+            status.HTTP_200_OK
         )
 
     @action(detail=False, methods=['post'])
@@ -101,4 +102,20 @@ class UserViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentication credentials were not provided.'}, status.HTTP_401_UNAUTHORIZED)
 
-        return Response(UserSerializer(request.user).data)
+        return Response(UserSerializer(request.user).data, status.HTTP_200_OK)
+
+    @action(detail=False, methods=['patch'])
+    def update_email(self, request):
+        user = request.user
+
+        serializer = UpdateEmailSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.data
+
+        if not user.check_password(data['password']):
+            return Response({'detail': 'Password is incorrect'}, status.HTTP_400_BAD_REQUEST)
+
+        user.email = data['email']
+        user.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

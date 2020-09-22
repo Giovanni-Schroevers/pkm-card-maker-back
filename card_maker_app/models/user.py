@@ -13,6 +13,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
+    bio = models.TextField(null=True, blank=True)
     over13 = models.BooleanField(null=True, blank=True)
     photo = ProcessedImageField(
         null=True,

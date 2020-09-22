@@ -104,9 +104,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return Response(UserSerializer(request.user).data, status.HTTP_200_OK)
 
-    @action(detail=False, methods=['patch'])
-    def update_email(self, request):
-        user = request.user
+    @action(detail=True, methods=['patch'])
+    def update_email(self, request, pk):
+        user = self.get_object()
 
         serializer = UpdateEmailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

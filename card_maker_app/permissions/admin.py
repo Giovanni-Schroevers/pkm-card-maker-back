@@ -14,7 +14,7 @@ class IsAdminOrUpdateSelf(permissions.IsAdminUser):
         return True
 
     def has_object_permission(self, request, view, obj):
-        if view.action in ['update', 'partial_update']:
+        if view.action in ['update', 'partial_update', 'update_email']:
             return super(IsAdminOrUpdateSelf, self).has_permission(request, view) \
                     or request.user.pk == obj.pk
         else:

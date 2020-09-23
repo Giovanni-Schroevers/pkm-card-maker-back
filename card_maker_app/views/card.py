@@ -1,3 +1,5 @@
+import json
+
 from django.forms import model_to_dict
 from django.http import QueryDict
 from rest_framework import viewsets, status
@@ -12,6 +14,7 @@ from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, T
     SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer, \
     CardCreateSerializer, MoveCreateSerializer, AbilitySerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
     BaseEnergyCardSerializer, CardOverviewSerializer
+from card_maker_app.utils.camel_to_underscore import convert_JSON
 from card_maker_app.utils.energy_cost import save_energy_cost
 
 
@@ -38,18 +41,20 @@ class CardViewSet(viewsets.ModelViewSet):
         saved_card = None
 
         if card['supertype'].short_name == 'Pokemon':
-            for move in ['move_1', 'move_2', 'move_3']:
+            for move in ['move1', 'move2', 'move3']:
                 if move in card:
-                    move_serializer = MoveCreateSerializer(data=card[move])
+                    data = convert_JSON(json.loads(card[move]))
+                    move_serializer = MoveCreateSerializer(data=data)
                     move_serializer.is_valid(raise_exception=True)
                     saved_move = move_serializer.save()
 
-                    for energy_cost in card[move]['energy_cost']:
+                    for energy_cost in data['energy_cost']:
                         save_energy_cost(energy_cost, saved_move)
                     card[move] = saved_move
 
             if 'ability' in card:
-                ability_serializer = AbilitySerializer(data=card['ability'])
+                data = convert_JSON(json.loads(card['ability']))
+                ability_serializer = AbilitySerializer(data=data)
                 ability_serializer.is_valid(raise_exception=True)
                 ability = ability_serializer.save()
                 card['ability'] = ability
@@ -86,9 +91,10 @@ class CardViewSet(viewsets.ModelViewSet):
         saved_card = None
 
         if card['supertype'].short_name == 'Pokemon':
-            for move in ['move_1', 'move_2', 'move_3']:
+            for move in ['move1', 'move2', 'move3']:
                 if move in card:
-                    move_serializer = MoveCreateSerializer(data=card[move])
+                    data = convert_JSON(json.loads(card[move]))
+                    move_serializer = MoveCreateSerializer(data=data)
                     move_serializer.is_valid(raise_exception=True)
                     saved_move = move_serializer.save()
                     try:
@@ -101,7 +107,8 @@ class CardViewSet(viewsets.ModelViewSet):
                     card[move] = saved_move
 
             if card['ability']:
-                ability_serializer = AbilitySerializer(data=card['ability'])
+                data = convert_JSON(json.loads(card['ability']))
+                ability_serializer = AbilitySerializer(data=data)
                 ability_serializer.is_valid(raise_exception=True)
                 ability = ability_serializer.save()
                 old_card.ability.delete()

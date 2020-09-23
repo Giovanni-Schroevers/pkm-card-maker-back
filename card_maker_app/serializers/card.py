@@ -3,7 +3,7 @@ from collections import OrderedDict
 from rest_framework import serializers
 
 from card_maker_app.models import Card
-from card_maker_app.serializers import MoveSerializer, AbilitySerializer, UserOverviewSerializer, \
+from card_maker_app.serializers import AbilitySerializer, UserOverviewSerializer, \
     ReadOnlyMoveSerializer
 
 
@@ -13,9 +13,9 @@ def required(value):
 
 
 class CardSerializer(serializers.ModelSerializer):
-    move_1 = ReadOnlyMoveSerializer()
-    move_2 = ReadOnlyMoveSerializer()
-    move_3 = ReadOnlyMoveSerializer()
+    move1 = ReadOnlyMoveSerializer()
+    move2 = ReadOnlyMoveSerializer()
+    move3 = ReadOnlyMoveSerializer()
     user = UserOverviewSerializer()
     ability = AbilitySerializer()
 
@@ -29,10 +29,10 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class CardCreateSerializer(serializers.ModelSerializer):
-    move_1 = MoveSerializer(required=False, allow_null=True)
-    move_2 = MoveSerializer(required=False, allow_null=True)
-    move_3 = MoveSerializer(required=False, allow_null=True)
-    ability = AbilitySerializer(required=False, allow_null=True)
+    move1 = serializers.CharField(required=False, allow_null=True)
+    move2 = serializers.CharField(required=False, allow_null=True)
+    move3 = serializers.CharField(required=False, allow_null=True)
+    ability = serializers.CharField(required=False, allow_null=True)
 
     def validate(self, card):
         if 'type' in card:
@@ -56,7 +56,7 @@ class CardCreateSerializer(serializers.ModelSerializer):
 
         if card['supertype'].short_name == 'Pokemon':
             has_item = False
-            for item in ['move_1', 'move_2', 'move_3', 'ability']:
+            for item in ['move1', 'move2', 'move3', 'ability']:
                 if item in card:
                     has_item = True
             if not has_item:

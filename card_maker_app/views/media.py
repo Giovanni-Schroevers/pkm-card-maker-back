@@ -12,7 +12,10 @@ from card_maker_app.models import Card, User
 @api_view(['GET'])
 @permission_classes((AllowAny,))
 def media_access(request, path):
-    access_granted = has_permission(path, request.user)
+    try:
+        access_granted = has_permission(path, request.user)
+    except FileNotFoundError:
+        return Response({'detail': 'File could not be found'}, status.HTTP_404_NOT_FOUND)
 
     if access_granted:
         if settings.DEBUG:
@@ -28,7 +31,7 @@ def media_access(request, path):
         response['X-Accel-Redirect'] = '/protected/media/' + path
         return response
     else:
-        return Response({'detail': 'Not authorized to access this media.'}, status.HTTP_401_UNAUTHORIZED)
+        return Response({'detail': 'Not authorized to access this media'}, status.HTTP_401_UNAUTHORIZED)
 
 
 def has_permission(path, user):
@@ -36,20 +39,32 @@ def has_permission(path, user):
         if user.is_staff:
             return True
 
-    if User.objects.filter(photo=path):
-        return True
+    try:
+        if User.objects.get(photo=path):
+            return True
 
-    if Card.objects.filter(
-        Q(background_image=path) |
-        Q(card_image=path) |
-        Q(top_image=path) |
-        Q(type_image=path) |
-        Q(prevolve_image=path) |
-        Q(custom_set_image=path)
-    ):
-        return False
+    except User.DoesNotExist:
+        raise FileNotFoundError
 
-    if Card.objects.filter(full_card_image=path):
-        return True
+    try:
+        card = Card.objects.get(
+            Q(background_image=path) |
+            Q(card_image=path) |
+            Q(top_image=path) |
+            Q(type_image=path) |
+            Q(prevolve_image=path) |
+            Q(custom_set_image=path)
+        )
+
+        if card:
+            if card.public:
+                return True
+            return False
+
+        if Card.objects.get(full_card_image=path):
+            return True
+
+    except Card.DoesNotExist:
+        raise FileNotFoundError
 
     return False

@@ -79,6 +79,9 @@ class CardViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         old_card = self.get_object()
 
+        if old_card.published:
+            return Response({'detail': 'A published card can not be updated'}, status.HTTP_403_FORBIDDEN)
+
         data = request.data
         if type(data) is QueryDict:
             data = data.dict()
@@ -159,3 +162,13 @@ class CardViewSet(viewsets.ModelViewSet):
     def published(self, request):
         cards = Card.objects.filter(public=True)
         return Response(CardOverviewSerializer(cards, many=True, context={'request': request}).data)
+
+    @action(detail=True, methods=['get'])
+    def publish(self, request, pk):
+        card = self.get_object()
+
+        if not card.public:
+            card.public = True
+            card.save()
+
+        return Response("", status.HTTP_204_NO_CONTENT)

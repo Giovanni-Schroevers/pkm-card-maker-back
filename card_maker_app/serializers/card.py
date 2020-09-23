@@ -3,7 +3,7 @@ from collections import OrderedDict
 from rest_framework import serializers
 
 from card_maker_app.models import Card
-from card_maker_app.serializers import MoveSerializer, AbilitySerializer, UserOverviewSerializer, \
+from card_maker_app.serializers import AbilitySerializer, UserOverviewSerializer, \
     ReadOnlyMoveSerializer
 
 
@@ -29,10 +29,10 @@ class CardSerializer(serializers.ModelSerializer):
 
 
 class CardCreateSerializer(serializers.ModelSerializer):
-    move_1 = MoveSerializer(required=False, allow_null=True)
-    move_2 = MoveSerializer(required=False, allow_null=True)
-    move_3 = MoveSerializer(required=False, allow_null=True)
-    ability = AbilitySerializer(required=False, allow_null=True)
+    move_1 = serializers.CharField(required=False, allow_null=True)
+    move_2 = serializers.CharField(required=False, allow_null=True)
+    move_3 = serializers.CharField(required=False, allow_null=True)
+    ability = serializers.CharField(required=False, allow_null=True)
 
     def validate(self, card):
         if 'type' in card:

@@ -12,7 +12,7 @@ class Card(models.Model):
 
     name = models.CharField(max_length=255)
     sub_name = models.CharField(max_length=255, null=True, blank=True)
-    hit_points = models.IntegerField(null=True, blank=True)
+    hitpoints = models.IntegerField(null=True, blank=True)
     card_number = models.CharField(max_length=255, null=True, blank=True)
     total_cards = models.CharField(max_length=255, null=True, blank=True)
     illustrator = models.CharField(max_length=255, null=True, blank=True)
@@ -44,9 +44,9 @@ class Card(models.Model):
     set = models.ForeignKey(Set, on_delete=models.PROTECT, null=True, blank=True)
     base_set = models.ForeignKey(BaseSet, on_delete=models.PROTECT)
     ability = models.ForeignKey(Ability, on_delete=models.SET_NULL, null=True, blank=True)
-    move_1 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move1')
-    move_2 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move2')
-    move_3 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move3')
+    move1 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move1')
+    move2 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move2')
+    move3 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move3')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_card_image = models.ImageField(upload_to=directory_path)
 

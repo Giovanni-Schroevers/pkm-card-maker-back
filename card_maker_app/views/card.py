@@ -41,7 +41,7 @@ class CardViewSet(viewsets.ModelViewSet):
         saved_card = None
 
         if card['supertype'].short_name == 'Pokemon':
-            for move in ['move_1', 'move_2', 'move_3']:
+            for move in ['move1', 'move2', 'move3']:
                 if move in card:
                     data = convert_JSON(json.loads(card[move]))
                     move_serializer = MoveCreateSerializer(data=data)
@@ -91,7 +91,7 @@ class CardViewSet(viewsets.ModelViewSet):
         saved_card = None
 
         if card['supertype'].short_name == 'Pokemon':
-            for move in ['move_1', 'move_2', 'move_3']:
+            for move in ['move1', 'move2', 'move3']:
                 if move in card:
                     data = convert_JSON(json.loads(card[move]))
                     move_serializer = MoveCreateSerializer(data=data)

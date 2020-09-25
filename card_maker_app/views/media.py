@@ -12,10 +12,7 @@ from card_maker_app.models import Card, User
 @api_view(['GET'])
 @permission_classes((AllowAny,))
 def media_access(request, path):
-    try:
-        access_granted = has_permission(path, request.user)
-    except FileNotFoundError:
-        return Response({'detail': 'File could not be found'}, status.HTTP_404_NOT_FOUND)
+    access_granted = has_permission(path, request.user)
 
     if access_granted:
         if settings.DEBUG:
@@ -44,7 +41,7 @@ def has_permission(path, user):
             return True
 
     except User.DoesNotExist:
-        raise FileNotFoundError
+        pass
 
     try:
         card = Card.objects.get(
@@ -57,14 +54,18 @@ def has_permission(path, user):
         )
 
         if card:
-            if card.public:
+            if card.public or card.user is user:
                 return True
+
             return False
 
+    except Card.DoesNotExist:
+        pass
+
+    try:
         if Card.objects.get(full_card_image=path):
             return True
-
     except Card.DoesNotExist:
-        raise FileNotFoundError
+        pass
 
     return False

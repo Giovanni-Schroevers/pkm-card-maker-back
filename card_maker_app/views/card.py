@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from card_maker_app.models import Supertype, Subtype, Type, BaseSet, Set, Rarity, Variation, Rotation, RarityIcon, \
     Card, Move
 from card_maker_app.permissions import IsAuthenticatedListCreate
-from card_maker_app.permissions.admin import IsAdminOrOwner
+from card_maker_app.permissions.card import IsAdminOrOwnerOrPublic
 from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, TypeSerializer, BaseSetSerializer, \
     SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer, \
     CardCreateSerializer, MoveCreateSerializer, AbilitySerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
@@ -18,7 +18,7 @@ from card_maker_app.utils.camel_to_underscore import convert_JSON
 from card_maker_app.utils.energy_cost import save_energy_cost
 
 
-@permission_classes((IsAdminOrOwner, IsAuthenticatedListCreate))
+@permission_classes((IsAdminOrOwnerOrPublic, IsAuthenticatedListCreate))
 class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
@@ -78,6 +78,9 @@ class CardViewSet(viewsets.ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         old_card = self.get_object()
+
+        if old_card.published:
+            return Response({'detail': 'A published card can not be updated'}, status.HTTP_403_FORBIDDEN)
 
         data = request.data
         if type(data) is QueryDict:
@@ -154,3 +157,18 @@ class CardViewSet(viewsets.ModelViewSet):
             'rotations': rotations,
             'rarity_icons': rarity_icons
         })
+
+    @action(detail=False, methods=['get'])
+    def published(self, request):
+        cards = Card.objects.filter(public=True)
+        return Response(CardOverviewSerializer(cards, many=True, context={'request': request}).data)
+
+    @action(detail=True, methods=['get'])
+    def publish(self, request, pk):
+        card = self.get_object()
+
+        if not card.public:
+            card.public = True
+            card.save()
+
+        return Response("", status.HTTP_204_NO_CONTENT)

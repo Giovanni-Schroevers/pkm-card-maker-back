@@ -21,7 +21,7 @@ class CardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
-        fields = '__all__'
+        exclude = ['public']
 
     def to_representation(self, instance):
         result = super(CardSerializer, self).to_representation(instance)
@@ -65,7 +65,7 @@ class CardCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
-        fields = '__all__'
+        exclude = ['public']
 
 
 class TrainerCardSerializer(serializers.ModelSerializer):

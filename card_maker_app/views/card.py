@@ -79,7 +79,7 @@ class CardViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         old_card = self.get_object()
 
-        if old_card.published:
+        if old_card.public:
             return Response({'detail': 'A published card can not be updated'}, status.HTTP_403_FORBIDDEN)
 
         data = request.data

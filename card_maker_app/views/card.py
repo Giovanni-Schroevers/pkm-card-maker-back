@@ -100,12 +100,13 @@ class CardViewSet(viewsets.ModelViewSet):
                     move_serializer = MoveCreateSerializer(data=data)
                     move_serializer.is_valid(raise_exception=True)
                     saved_move = move_serializer.save()
+
                     try:
                         Move.objects.get(pk=model_to_dict(old_card)[move]).delete()
                     except Move.DoesNotExist:
                         pass
 
-                    for energy_cost in card[move]['energy_cost']:
+                    for energy_cost in data['energy_cost']:
                         save_energy_cost(energy_cost, saved_move)
                     card[move] = saved_move
 
@@ -114,7 +115,11 @@ class CardViewSet(viewsets.ModelViewSet):
                 ability_serializer = AbilitySerializer(data=data)
                 ability_serializer.is_valid(raise_exception=True)
                 ability = ability_serializer.save()
-                old_card.ability.delete()
+                try:
+                    old_card.ability.delete()
+                except AttributeError:
+                    # Old ability does not exist
+                    pass
                 card['ability'] = ability
 
             saved_card = serializer.save()

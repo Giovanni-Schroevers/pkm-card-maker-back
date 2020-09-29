@@ -102,7 +102,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentication credentials were not provided.'}, status.HTTP_401_UNAUTHORIZED)
 
-        return Response(UserSerializer(request.user).data, status.HTTP_200_OK)
+        return Response(UserSerializer(request.user, context={'request': request}).data, status.HTTP_200_OK)
 
     @action(detail=True, methods=['patch'])
     def update_email(self, request, pk):

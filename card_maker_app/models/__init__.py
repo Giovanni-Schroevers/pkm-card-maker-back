@@ -13,3 +13,6 @@ from .move_energy_cost import MoveEnergyCost
 from .move import Move
 from .ability import Ability
 from .card import Card
+from .card_comment import CardComment
+from .card_like import CardLike
+from .comment_like import CommentLike

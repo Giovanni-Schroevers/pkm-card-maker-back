@@ -50,6 +50,8 @@ class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_card_image = models.ImageField(upload_to=directory_path)
     public = models.BooleanField(default=False)
+    likes = models.ManyToManyField(User, through='CardLike', related_name='card_likes')
+    comments = models.ManyToManyField(User, through='CardComment', related_name='card_comments')
 
     def __str__(self):
         return self.name

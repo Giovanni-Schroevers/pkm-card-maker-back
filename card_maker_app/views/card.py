@@ -177,3 +177,22 @@ class CardViewSet(viewsets.ModelViewSet):
             card.save()
 
         return Response("", status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['get'])
+    def like(self, request, pk):
+        card = self.get_object()
+        user = request.user
+
+        if card in user.card_likes.all():
+            user.card_likes.remove(card)
+        else:
+            user.card_likes.add(card)
+
+        return Response("", status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['post'])
+    def comment(self, request, pk):
+        card = self.get_object()
+        user = request.user
+
+

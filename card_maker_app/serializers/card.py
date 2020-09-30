@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from card_maker_app.models import Card
 from card_maker_app.serializers import AbilitySerializer, UserOverviewSerializer, \
-    ReadOnlyMoveSerializer
+    ReadOnlyMoveSerializer, CardCommentSerializer
 
 
 def required(value):
@@ -18,6 +18,9 @@ class CardSerializer(serializers.ModelSerializer):
     move3 = ReadOnlyMoveSerializer()
     user = UserOverviewSerializer()
     ability = AbilitySerializer()
+    likes = serializers.IntegerField(source='likes.count')
+    liked_by = UserOverviewSerializer(many=True, source='likes')
+    comments = CardCommentSerializer(source='card_comments', many=True)
 
     class Meta:
         model = Card
@@ -140,6 +143,8 @@ class SpecialEnergyCardSerializer(serializers.ModelSerializer):
 
 
 class CardOverviewSerializer(serializers.ModelSerializer):
+    likes = serializers.IntegerField(source='likes.count')
+    comments = serializers.IntegerField(source='comments.count')
 
     class Meta:
         model = Card
@@ -147,4 +152,6 @@ class CardOverviewSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'full_card_image',
+            'likes',
+            'comments'
         )

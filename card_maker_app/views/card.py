@@ -13,7 +13,7 @@ from card_maker_app.permissions.card import IsAdminOrOwnerOrPublic
 from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, TypeSerializer, BaseSetSerializer, \
     SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer, \
     CardCreateSerializer, MoveCreateSerializer, AbilitySerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
-    BaseEnergyCardSerializer, CardOverviewSerializer
+    BaseEnergyCardSerializer, CardOverviewSerializer, CreateCommentSerializer
 from card_maker_app.utils.camel_to_underscore import convert_JSON
 from card_maker_app.utils.energy_cost import save_energy_cost
 
@@ -192,7 +192,12 @@ class CardViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def comment(self, request, pk):
-        card = self.get_object()
-        user = request.user
+        data = request.data
+        data['card'] = self.get_object()
+        data['user'] = request.user
 
+        serializer = CreateCommentSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.data
 
+        return Response(data, status.HTTP_201_CREATED)

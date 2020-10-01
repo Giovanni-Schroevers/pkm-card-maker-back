@@ -15,3 +15,4 @@ from .move_energy_cost import MoveEnergyCostCreateSerializer, ReadOnlyMoveEnergy
 from .move import MoveCreateSerializer, ReadOnlyMoveSerializer
 from .card import CardSerializer, CardCreateSerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
                   BaseEnergyCardSerializer, CardOverviewSerializer
+from .comment import CreateCommentSerializer

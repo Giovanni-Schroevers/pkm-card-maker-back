@@ -19,5 +19,12 @@ class CardCommentSerializer(serializers.ModelSerializer):
         )
 
 
-class CommentSerializer(serializers.Serializer):
+class CreateCommentSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = CardComment
+        fields = (
+            'card',
+            'user',
+            'comment',
+        )

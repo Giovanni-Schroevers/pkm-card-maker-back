@@ -1,7 +1,9 @@
 import json
 
+from django.db.models import Q
 from django.forms import model_to_dict
 from django.http import QueryDict
+from django.utils.timezone import now
 from rest_framework import viewsets, status
 from rest_framework.decorators import permission_classes, action
 from rest_framework.response import Response
@@ -13,7 +15,7 @@ from card_maker_app.permissions.card import IsAdminOrOwnerOrPublic
 from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, TypeSerializer, BaseSetSerializer, \
     SetSerializer, RaritySerializer, VariationSerializer, RotationSerializer, RarityIconSerializer, CardSerializer, \
     CardCreateSerializer, MoveCreateSerializer, AbilitySerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
-    BaseEnergyCardSerializer, CardOverviewSerializer, CreateCommentSerializer
+    BaseEnergyCardSerializer, CardOverviewSerializer, CreateCommentSerializer, CardCommentSerializer
 from card_maker_app.utils.camel_to_underscore import convert_JSON
 from card_maker_app.utils.energy_cost import save_energy_cost
 
@@ -165,7 +167,7 @@ class CardViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def published(self, request):
-        cards = Card.objects.filter(public=True)
+        cards = Card.objects.filter(public__isnull=False).order_by('-public')
         return Response(CardOverviewSerializer(cards, many=True, context={'request': request}).data)
 
     @action(detail=True, methods=['get'])
@@ -173,7 +175,7 @@ class CardViewSet(viewsets.ModelViewSet):
         card = self.get_object()
 
         if not card.public:
-            card.public = True
+            card.public = now()
             card.save()
 
         return Response("", status.HTTP_204_NO_CONTENT)
@@ -193,11 +195,11 @@ class CardViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def comment(self, request, pk):
         data = request.data
-        data['card'] = self.get_object()
-        data['user'] = request.user
+        data['card'] = self.get_object().pk
+        data['user'] = request.user.pk
 
         serializer = CreateCommentSerializer(data=data)
         serializer.is_valid(raise_exception=True)
-        data = serializer.data
+        comment = serializer.save()
 
-        return Response(data, status.HTTP_201_CREATED)
+        return Response(CardCommentSerializer(comment, context={'request': request}).data, status.HTTP_201_CREATED)

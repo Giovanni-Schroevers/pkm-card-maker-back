@@ -8,6 +8,8 @@ class CardComment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
     likes = models.ManyToManyField(User, through='CommentLike', related_name='comment_like')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = User._meta.app_label + "_card_comment"

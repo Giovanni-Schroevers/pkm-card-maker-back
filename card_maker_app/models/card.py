@@ -49,7 +49,7 @@ class Card(models.Model):
     move3 = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True, blank=True, related_name='card_move3')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_card_image = models.ImageField(upload_to=directory_path)
-    public = models.BooleanField(default=False)
+    public = models.DateTimeField(default=None, null=True, blank=True)
     likes = models.ManyToManyField(User, through='CardLike', related_name='card_likes')
     comments = models.ManyToManyField(User, through='CardComment', related_name='card_comments')
 

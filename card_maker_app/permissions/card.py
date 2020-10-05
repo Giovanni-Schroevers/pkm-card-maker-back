@@ -18,4 +18,7 @@ class IsAdminOrOwnerOrPublic(permissions.IsAdminUser):
             return super(IsAdminOrOwnerOrPublic, self).has_permission(request, view) \
                 or request.user.pk == obj.user.pk or obj.public
 
-        return True
+        if obj.public and request.user.is_authenticated:
+            return True
+
+        return False

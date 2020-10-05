@@ -16,6 +16,8 @@ class CardCommentSerializer(serializers.ModelSerializer):
             'comment',
             'likes',
             'liked_by',
+            'created_at',
+            'updated_at'
         )
 
 

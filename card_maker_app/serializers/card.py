@@ -153,5 +153,6 @@ class CardOverviewSerializer(serializers.ModelSerializer):
             'name',
             'full_card_image',
             'likes',
-            'comments'
+            'comments',
+            'public',
         )

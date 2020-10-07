@@ -1,4 +1,5 @@
 from .user import User
+from .user_follow import UserFollow
 from .password_reset_token import PasswordResetToken
 from .base_set import BaseSet
 from .set import Set

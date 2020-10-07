@@ -13,12 +13,12 @@ from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
 from card_maker_app.models import User, PasswordResetToken
-from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf
+from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
     UpdateEmailSerializer
 
 
-@permission_classes((IsAdminOrUpdateSelf, IsAdminDelete))
+@permission_classes((IsAdminOrUpdateSelf, IsAdminDelete, IsAuthenticatedFollow))
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -118,4 +118,17 @@ class UserViewSet(viewsets.ModelViewSet):
         user.email = data['email']
         user.save()
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response("", status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['get'])
+    def follow(self, request, pk):
+        user = request.user
+        user_follow = self.get_object()
+
+        if user_follow in user.following.all():
+            user.following.remove(user_follow)
+        else:
+            user.following.add(user_follow)
+
+        return Response("", status.HTTP_204_NO_CONTENT)
+

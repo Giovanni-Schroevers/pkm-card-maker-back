@@ -24,6 +24,7 @@ class User(AbstractUser):
         default='default.png'
     )
     last_name = None
+    following = models.ManyToManyField('User', through='UserFollow', related_name='followers')
 
     def __str__(self):
         return self.username

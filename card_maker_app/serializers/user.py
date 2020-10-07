@@ -3,22 +3,6 @@ from rest_framework import serializers
 from card_maker_app.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(read_only=True)
-
-    class Meta:
-        model = User
-        fields = (
-            'id',
-            'username',
-            'email',
-            'first_name',
-            'over13',
-            'photo',
-            'bio',
-        )
-
-
 class UserCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -43,6 +27,26 @@ class UserOverviewSerializer(serializers.ModelSerializer):
             'id',
             'username',
             'photo'
+        )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(read_only=True)
+    following = UserOverviewSerializer(many=True)
+    followers = UserOverviewSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username',
+            'email',
+            'first_name',
+            'over13',
+            'photo',
+            'bio',
+            'following',
+            'followers',
         )
 
 

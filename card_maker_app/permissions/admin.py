@@ -1,6 +1,14 @@
 from rest_framework import permissions
 
 
+class IsAuthenticatedFollow(permissions.IsAuthenticated):
+    def has_permission(self, request, view):
+        if view.action == 'follow':
+            return super(IsAuthenticatedFollow, self).has_permission(request, view)
+
+        return True
+
+
 class IsAdminDelete(permissions.IsAdminUser):
     def has_permission(self, request, view):
         if view.action == 'destroy':

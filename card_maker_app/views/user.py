@@ -1,6 +1,7 @@
 import uuid
 import os
 from datetime import timedelta
+from itertools import chain
 from smtplib import SMTPException
 
 from django.core.mail import send_mail, BadHeaderError
@@ -12,10 +13,17 @@ from rest_framework.decorators import permission_classes, action
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
-from card_maker_app.models import User, PasswordResetToken
+from card_maker_app.models import User, PasswordResetToken, Card, CardLike
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
-    UpdateEmailSerializer
+    UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer
+
+
+def item_date(instance):
+    if 'card' in instance:
+        return instance['card']['public']
+    else:
+        return instance['like']['created_at']
 
 
 @permission_classes((IsAdminOrUpdateSelf, IsAdminDelete, IsAuthenticatedFollow))
@@ -125,6 +133,9 @@ class UserViewSet(viewsets.ModelViewSet):
         user = request.user
         user_follow = self.get_object()
 
+        if user_follow is user:
+            return Response({'detail': 'Following yourself is not possible'}, status.HTTP_400_BAD_REQUEST)
+
         if user_follow in user.following.all():
             user.following.remove(user_follow)
         else:
@@ -132,3 +143,26 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return Response("", status.HTTP_204_NO_CONTENT)
 
+    @action(detail=False, methods=['get'])
+    def timeline(self, request):
+        user = request.user
+        following = user.following.all()
+
+        cards = map(lambda instance: {'card': instance}, CardOverviewSerializer(
+            Card.objects.filter(public__isnull=False, user__in=following).order_by('-public'),
+            many=True,
+            context={'request': request}
+        ).data)
+        likes = map(lambda instance: {'like': instance}, CardLikeSerializer(
+            CardLike.objects.filter(user__in=following),
+            many=True,
+            context={'request': request}
+        ).data)
+
+        timeline = sorted(
+            chain(cards, likes),
+            key=lambda instance: item_date(instance),
+            reverse=True
+        )
+
+        return Response(timeline)

@@ -145,6 +145,7 @@ class SpecialEnergyCardSerializer(serializers.ModelSerializer):
 class CardOverviewSerializer(serializers.ModelSerializer):
     likes = serializers.IntegerField(source='likes.count')
     comments = serializers.IntegerField(source='comments.count')
+    user = UserOverviewSerializer()
 
     class Meta:
         model = Card
@@ -155,4 +156,5 @@ class CardOverviewSerializer(serializers.ModelSerializer):
             'likes',
             'comments',
             'public',
+            'user',
         )

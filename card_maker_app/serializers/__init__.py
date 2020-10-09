@@ -16,3 +16,4 @@ from .move import MoveCreateSerializer, ReadOnlyMoveSerializer
 from .card import CardSerializer, CardCreateSerializer, TrainerCardSerializer, SpecialEnergyCardSerializer, \
                   BaseEnergyCardSerializer, CardOverviewSerializer
 from .comment import CreateCommentSerializer
+from .card_like import CardLikeSerializer

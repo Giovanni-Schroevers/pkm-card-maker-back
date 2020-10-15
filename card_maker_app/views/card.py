@@ -18,6 +18,7 @@ from card_maker_app.serializers import SubtypeSerializer, SupertypeSerializer, T
     BaseEnergyCardSerializer, CardOverviewSerializer, CreateCommentSerializer, CardCommentSerializer
 from card_maker_app.utils.camel_to_underscore import convert_JSON
 from card_maker_app.utils.energy_cost import save_energy_cost
+from card_maker_app.utils.report import create_report
 
 
 @permission_classes((IsAdminOrOwnerOrPublic, IsAuthenticatedListCreate))
@@ -203,3 +204,12 @@ class CardViewSet(viewsets.ModelViewSet):
         comment = serializer.save()
 
         return Response(CardCommentSerializer(comment, context={'request': request}).data, status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=['post'])
+    def report(self, request, pk):
+        user = request.user
+        parent = self.get_object()
+        data = request.data
+        data['user'] = user.pk
+
+        return create_report(parent, data)

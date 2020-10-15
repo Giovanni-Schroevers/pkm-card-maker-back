@@ -3,7 +3,7 @@ from rest_framework import permissions
 
 class IsAuthenticatedFollow(permissions.IsAuthenticated):
     def has_permission(self, request, view):
-        if view.action in ['follow', 'timeline']:
+        if view.action in ['follow', 'timeline', 'report']:
             return super(IsAuthenticatedFollow, self).has_permission(request, view)
 
         return True

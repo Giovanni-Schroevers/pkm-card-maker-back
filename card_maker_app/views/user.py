@@ -17,6 +17,7 @@ from card_maker_app.models import User, PasswordResetToken, Card, CardLike
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
     UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer
+from card_maker_app.utils.report import create_report
 
 
 def item_date(instance):
@@ -166,3 +167,13 @@ class UserViewSet(viewsets.ModelViewSet):
         )
 
         return Response(timeline)
+
+    @action(detail=True, methods=['post'])
+    def report(self, request, pk):
+        user = request.user
+        parent = self.get_object()
+        data = request.data
+        data['user'] = user.pk
+
+        return create_report(parent, data)
+

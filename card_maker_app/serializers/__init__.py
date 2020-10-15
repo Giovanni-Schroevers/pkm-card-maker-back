@@ -17,3 +17,4 @@ from .card import CardSerializer, CardCreateSerializer, TrainerCardSerializer, S
                   BaseEnergyCardSerializer, CardOverviewSerializer
 from .comment import CreateCommentSerializer
 from .card_like import CardLikeSerializer
+from .report import ReportCreateSerializer, ReportSerializer

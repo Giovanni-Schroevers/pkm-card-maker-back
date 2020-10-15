@@ -17,3 +17,4 @@ from .card import Card
 from .card_comment import CardComment
 from .card_like import CardLike
 from .comment_like import CommentLike
+from .report import Report

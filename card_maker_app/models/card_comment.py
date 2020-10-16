@@ -10,6 +10,7 @@ class CardComment(models.Model):
     likes = models.ManyToManyField(User, through='CommentLike', related_name='comment_like')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    quote = models.ForeignKey('CardComment', on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         db_table = User._meta.app_label + "_card_comment"

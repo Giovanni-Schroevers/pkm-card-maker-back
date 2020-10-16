@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_cleanup',
     'imagekit',
+    'safedelete',
 ]
 
 MIDDLEWARE = [

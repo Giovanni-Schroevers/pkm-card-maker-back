@@ -1,11 +1,15 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from safedelete import SOFT_DELETE
+from safedelete.models import SafeDeleteModel
 
 from card_maker_app.models import User
 
 
-class Report(models.Model):
+class Report(SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
     categories = (
         ('sexual', 'sexual content'),
         ('harmful or hateful', 'harmful or hateful content'),

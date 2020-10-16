@@ -17,6 +17,7 @@ drf-social-oauth2 = "~=1.0"
 pillow = "~=7.2"
 django-cleanup = "~=5.0"
 django-imagekit = "*"
+django-safedelete = "*"
 
 [requires]
 python_version = "3.7"

@@ -4,21 +4,14 @@ from django.db import models
 from safedelete import SOFT_DELETE
 from safedelete.models import SafeDeleteModel
 
-from card_maker_app.models import User
+from card_maker_app.models import User, Category
 
 
 class Report(SafeDeleteModel):
     _safedelete_policy = SOFT_DELETE
 
-    categories = (
-        ('sexual', 'sexual content'),
-        ('harmful or hateful', 'harmful or hateful content'),
-        ('violent', 'violent content'),
-        ('spam', 'spam')
-    )
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.CharField(max_length=255, choices=categories)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     description = models.TextField(null=True, blank=True)
     parent_object_id = models.IntegerField()
     parent_content_type = models.ForeignKey(

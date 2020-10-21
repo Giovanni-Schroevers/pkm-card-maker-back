@@ -1,7 +1,8 @@
 from rest_framework import permissions
+from .base import IsAuthenticated
 
 
-class IsAuthenticatedListCreate(permissions.IsAuthenticated):
+class IsAuthenticatedListCreate(IsAuthenticated):
     def has_permission(self, request, view):
         if view.action in ['list', 'create', 'like']:
             return super(IsAuthenticatedListCreate, self).has_permission(request, view)

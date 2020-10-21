@@ -1,7 +1,8 @@
 from rest_framework import permissions
+from .base import IsAuthenticated
 
 
-class IsAuthenticatedFollow(permissions.IsAuthenticated):
+class IsAuthenticatedFollow(IsAuthenticated):
     def has_permission(self, request, view):
         if view.action in ['follow', 'timeline', 'report']:
             return super(IsAuthenticatedFollow, self).has_permission(request, view)

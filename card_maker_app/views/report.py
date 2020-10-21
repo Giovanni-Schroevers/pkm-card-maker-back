@@ -14,10 +14,6 @@ class ReportViewSet(viewsets.ModelViewSet):
     serializer_class = ReportSerializer
 
     @action(detail=False, methods=['get'])
-    def categories(self, request):
-        return Response(Report.categories)
-
-    @action(detail=False, methods=['get'])
     def archived(self, request):
         reports = Report.objects.deleted_only()
 

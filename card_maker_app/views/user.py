@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from card_maker_app.models import User, PasswordResetToken, Card, CardLike
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
-    UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer
+    UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer, UserBanSerializer
 from card_maker_app.utils.report import create_report
 
 
@@ -177,3 +177,41 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return create_report(parent, data)
 
+    @action(detail=True, methods=['post'])
+    def ban(self, request, pk):
+        user = self.get_object()
+
+        if user.is_superuser:
+            return Response({'detail': 'Admin user can not be banned'}, status.HTTP_400_BAD_REQUEST)
+
+        data = request.data
+        data['user'] = user.pk
+        data['admin'] = request.user.pk
+
+        serializer = UserBanSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user_ban = serializer.save()
+
+        message = f'Your account has been restricted for violating our {user_ban.reason.name} policy if you believe' \
+                  f' this is an error please appeal using the following link: {os.getenv("FRONTEND_URL")}/appeal/'
+        template = get_template('../../card_maker_app/templates/restriction.html')
+        try:
+            send_mail(
+                subject='Password reset',
+                message=message,
+                html_message=template.render(
+                    {
+                        'url': f'{os.getenv("FRONTEND_URL")}/appeal',
+                        'contact': f'{os.getenv("FRONTEND_URL")}/contact',
+                        'home': os.getenv("FRONTEND_URL"),
+                        'reason': user_ban.reason.name.lower()
+                    }),
+                from_email='no-reply@cardmaker.com',
+                recipient_list=[user.email],
+            )
+        except BadHeaderError:
+            raise ParseError('Invalid header found')
+        except SMTPException:
+            raise ParseError('There was an error sending the email')
+
+        return Response('', status.HTTP_204_NO_CONTENT)

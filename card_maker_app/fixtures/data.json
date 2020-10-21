@@ -445,5 +445,33 @@
       "short_name": "rare",
       "name": "Rare"
     }
+  },
+  {
+    "model": "card_maker_app.category",
+    "pk": 1,
+    "fields": {
+      "name": "Sexual content"
+    }
+  },
+  {
+    "model": "card_maker_app.category",
+    "pk": 2,
+    "fields": {
+      "name": "Harmful or hateful content"
+    }
+  },
+  {
+    "model": "card_maker_app.category",
+    "pk": 3,
+    "fields": {
+      "name": "Violent content"
+    }
+  },
+  {
+    "model": "card_maker_app.category",
+    "pk": 4,
+    "fields": {
+      "name": "Spam"
+    }
   }
 ]

@@ -20,3 +20,4 @@ from .card_like import CardLikeSerializer
 from .category import CategorySerializer
 from .report import ReportCreateSerializer, ReportSerializer
 from .user_ban import UserBanSerializer
+from .appeal import AppealCreateSerializer, AppealSerializer

@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from card_maker_app.models import User, PasswordResetToken, Card, CardLike
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
-    UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer, UserBanSerializer
+    UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer, UserBanSerializer, AppealCreateSerializer
 from card_maker_app.utils.report import create_report
 
 
@@ -215,3 +215,19 @@ class UserViewSet(viewsets.ModelViewSet):
             raise ParseError('There was an error sending the email')
 
         return Response('', status.HTTP_204_NO_CONTENT)
+
+    @action(detail=False, methods=['post'])
+    def appeal(self, request):
+        user = request.user
+
+        if not user.banned:
+            return Response({'detail': 'You are currently not restricted'}, status.HTTP_400_BAD_REQUEST)
+
+        data = request.data
+        data['ban'] = user.banned.pk
+
+        serializer = AppealCreateSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({'detail': 'Appeal has been requested'}, status.HTTP_201_CREATED)

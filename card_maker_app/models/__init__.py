@@ -20,3 +20,4 @@ from .card_like import CardLike
 from .comment_like import CommentLike
 from .report import Report
 from .user_ban import UserBan
+from .appeal import Appeal

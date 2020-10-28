@@ -6,6 +6,9 @@ class IsAuthenticatedFollow(IsAuthenticated):
     def has_permission(self, request, view):
         if view.action in ['follow', 'timeline', 'report']:
             return super(IsAuthenticatedFollow, self).has_permission(request, view)
+        elif view.action == 'appeal':
+            if not request.user.is_authenticated:
+                return False
 
         return True
 

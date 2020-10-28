@@ -10,7 +10,7 @@ class Appeal(models.Model):
         ('rejected', 'rejected')
     )
 
-    ban = models.OneToOneField(UserBan, on_delete=models.CASCADE)
+    ban = models.OneToOneField(UserBan, on_delete=models.SET_NULL, null=True, blank=True)
     text = models.TextField()
     status = models.CharField(choices=statuses, default='pending', max_length=255)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)

@@ -13,7 +13,7 @@ from rest_framework.decorators import permission_classes, action
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 
-from card_maker_app.models import User, PasswordResetToken, Card, CardLike
+from card_maker_app.models import User, PasswordResetToken, Card, CardLike, UserBan
 from card_maker_app.permissions import IsAdminDelete, IsAdminOrUpdateSelf, IsAuthenticatedFollow
 from card_maker_app.serializers import UserSerializer, UserCreateSerializer, EmailSerializer, ResetPasswordSerializer, \
     UpdateEmailSerializer, CardOverviewSerializer, CardLikeSerializer, UserBanSerializer, AppealCreateSerializer
@@ -220,8 +220,10 @@ class UserViewSet(viewsets.ModelViewSet):
     def appeal(self, request):
         user = request.user
 
-        if not user.banned:
-            return Response({'detail': 'You are currently not restricted'}, status.HTTP_400_BAD_REQUEST)
+        try:
+            user.banned
+        except UserBan.DoesNotExist:
+            return Response({'detail': 'You are currently not banned'}, status.HTTP_400_BAD_REQUEST)
 
         data = request.data
         data['ban'] = user.banned.pk
